@@ -1,7 +1,9 @@
 import { Module } from '@nestjs/common';
+import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { TypeOrmModule } from '@nestjs/typeorm';
+import { GamesModule } from './games/games.module';
+import { PublishersModule } from './publisher/publishers.module';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
@@ -11,9 +13,11 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       username: 'root',
       password: 'ultra@password',
       database: 'ultra',
-      entities: [],
+      autoLoadEntities: true,
       synchronize: true,
     }),
+    GamesModule,
+    PublishersModule,
   ],
   controllers: [AppController],
   providers: [AppService],
