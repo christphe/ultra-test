@@ -1,4 +1,12 @@
-import { Body, Controller, Delete, Get, Post, Put } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Put,
+} from '@nestjs/common';
 import { DeleteResult } from 'typeorm';
 import { Publisher } from './publisher.entity';
 import { PublishersService } from './publishers.service';
@@ -25,5 +33,10 @@ export class PublishersController {
   @Delete()
   delete(id: number): Promise<DeleteResult> {
     return this.publishersService.remove(id);
+  }
+
+  @Get(':id')
+  getGame(@Param('id') id: number): Promise<Publisher> {
+    return this.publishersService.findOne(id);
   }
 }

@@ -36,8 +36,13 @@ export class GamesController {
     return this.gamesService.remove(id);
   }
 
+  @Get(':id')
+  getGame(@Param('id') id: number): Promise<Game> {
+    return this.gamesService.findOne(id);
+  }
+
   @Get(':id/publisher')
-  getPublisher(@Param('id') gameId: number): Promise<Publisher> {
-    return this.gamesService.getPublisher(gameId);
+  getGamePublisher(@Param('id') id: number): Promise<Publisher> {
+    return this.gamesService.getPublisher(id);
   }
 }
