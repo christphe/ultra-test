@@ -1,7 +1,8 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { Publisher } from 'src/publisher/publisher.entity';
+import { Exclude } from 'class-transformer';
+import { IsNotEmpty } from 'class-validator';
+import { Publisher } from '../publisher/publisher.entity';
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
-import { Exclude, Expose } from 'class-transformer';
 
 @Entity()
 export class Game {
@@ -11,10 +12,12 @@ export class Game {
 
   @Column()
   @ApiProperty()
+  @IsNotEmpty()
   title: string;
 
   @Column()
   @ApiProperty()
+  @IsNotEmpty()
   price: number;
 
   @Exclude({ toPlainOnly: true })
@@ -33,5 +36,6 @@ export class Game {
 
   @Column()
   @ApiProperty()
+  @IsNotEmpty()
   releaseDate: Date;
 }

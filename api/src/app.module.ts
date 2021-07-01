@@ -5,13 +5,13 @@ import { AppService } from './app.service';
 import { GamesModule } from './games/games.module';
 import { PublishersModule } from './publisher/publishers.module';
 
-var env = process.env.NODE_ENV || 'development';
+const env = process.env.NODE_ENV || 'development';
 
 @Module({
   imports: [
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: env === 'development' ? 'localhost' : 'sql',
+      host: env !== 'production' ? 'localhost' : 'sql',
       port: 3306,
       username: 'root',
       password: 'ultra@password',
