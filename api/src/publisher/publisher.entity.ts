@@ -12,7 +12,7 @@ export class Publisher {
   @ApiProperty()
   name: string;
 
-  @OneToMany(() => Game, (game) => game.publisher)
+  @OneToMany(() => Game, (game) => game.publisher, { onDelete: 'CASCADE' })
   @ApiProperty()
   games: Game[];
 

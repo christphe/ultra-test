@@ -17,32 +17,37 @@ export class GamesController {
   constructor(private readonly gamesService: GamesService) {}
 
   @Get()
-  findAll(): Promise<Game[]> {
+  async findAll(): Promise<Game[]> {
     return this.gamesService.findAll();
   }
 
   @Post()
-  create(@Body() game: Game): Promise<Game> {
+  async create(@Body() game: Game): Promise<Game> {
     return this.gamesService.create(game);
   }
 
   @Put()
-  update(@Body() game: Game): Promise<Game> {
+  async update(@Body() game: Game): Promise<Game> {
     return this.gamesService.update(game);
   }
 
   @Delete(':id')
-  delete(@Param('id') id: number): Promise<DeleteResult> {
+  async delete(@Param('id') id: number): Promise<DeleteResult> {
     return this.gamesService.remove(id);
   }
 
   @Get(':id')
-  getGame(@Param('id') id: number): Promise<Game> {
+  async getGame(@Param('id') id: number): Promise<Game> {
     return this.gamesService.findOne(id);
   }
 
   @Get(':id/publisher')
-  getGamePublisher(@Param('id') id: number): Promise<Publisher> {
+  async getGamePublisher(@Param('id') id: number): Promise<Publisher> {
     return this.gamesService.getPublisher(id);
+  }
+
+  @Post('clean')
+  async cleanGames() {
+    return this.gamesService.cleanGames();
   }
 }
