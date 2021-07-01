@@ -1,17 +1,17 @@
-import * as request from 'supertest';
-import { Test } from '@nestjs/testing';
 import {
   ClassSerializerInterceptor,
   INestApplication,
   ValidationPipe,
 } from '@nestjs/common';
-import { GamesModule } from '../src/games/games.module';
+import { Reflector } from '@nestjs/core';
+import { Test } from '@nestjs/testing';
+import * as request from 'supertest';
+import { GamesController } from '../src/games/games.controller';
 import { GamesService } from '../src/games/games.service';
 import { createGame } from './data/game';
-import { GamesController } from '../src/games/games.controller';
-import { Reflector } from '@nestjs/core';
-import { DateTime } from 'luxon';
 
+// as per nest documentation e2e tests use mocks, I would've rather spawn a test
+// environment and database at each run
 describe('Games', () => {
   let app: INestApplication;
   const gamesService: GamesService = (<any>{

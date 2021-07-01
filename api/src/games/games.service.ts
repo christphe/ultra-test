@@ -44,6 +44,8 @@ export class GamesService {
   }
 
   async cleanGames(): Promise<void> {
+    // could have used a nest queue here if I had more time
+    // and if the clean process took too long
     await Promise.all([
       this.deleteObsoleteGames(),
       this.applyDiscountsToOldGames(),
