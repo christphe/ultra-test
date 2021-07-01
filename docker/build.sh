@@ -1,0 +1,1 @@
+docker build ../api -f Dockerfile -t ultra:latest
