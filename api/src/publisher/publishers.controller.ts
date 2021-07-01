@@ -30,8 +30,8 @@ export class PublishersController {
     return this.publishersService.update(publisher);
   }
 
-  @Delete()
-  delete(id: number): Promise<DeleteResult> {
+  @Delete(':id')
+  delete(@Param('id') id: number): Promise<DeleteResult> {
     return this.publishersService.remove(id);
   }
 

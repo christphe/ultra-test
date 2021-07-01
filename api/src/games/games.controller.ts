@@ -31,8 +31,8 @@ export class GamesController {
     return this.gamesService.update(game);
   }
 
-  @Delete()
-  delete(id: number): Promise<DeleteResult> {
+  @Delete(':id')
+  delete(@Param('id') id: number): Promise<DeleteResult> {
     return this.gamesService.remove(id);
   }
 
